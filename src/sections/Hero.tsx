@@ -7,6 +7,7 @@ import {
   useTransform,
 } from 'framer-motion'
 import { useEffect, useRef, useState, useMemo } from 'react'
+
 import {
   FaDiscord,
   FaPause,
@@ -14,23 +15,213 @@ import {
   FaVolumeMute,
   FaVolumeUp,
   FaHeart,
+  FaTiktok,
 } from 'react-icons/fa'
 
 const mainStaff = [
-  { name: 'nine', role: 'Founder', avatar: '/images/sasuke.jpg', color: 'bg-green-400' },
-  { name: 'crixxus', role: 'Chairman', avatar: '/images/crix.png', color: 'bg-green-400' },
-  { name: 'sam', role: 'Area Handler', avatar: '/images/sam.png', color: 'bg-yellow-400' },
-  { name: 'kaii', role: 'Area Handler', avatar: '/images/kai.png', color: 'bg-red-400' },
+  {
+    name: 'nine',
+    role: 'Founder',
+    avatar: '/images/sasuke.jpg',
+    banner: '/images/ninebanner.gif',
+    color: 'bg-green-400',
+    tiktokUrl: 'https://tiktok.com/@nine',
+    description:
+      'Founder of Global CosaNostra on Bloxfruit. Strategic, respected, and highly active within the organization.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-green-400',
+  },
+
+  {
+    name: 'crixxus',
+    role: 'Chairman',
+    avatar: '/images/crix.png',
+    banner: '/images/crixbanner.gif',
+    color: 'bg-green-400',
+    tiktokUrl: 'https://tiktok.com/@crixxus',
+    description:
+      'Chairman of the Crew. Oversees internal operations and management.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-green-400',
+  },
+
+  {
+    name: 'sam',
+    role: 'Area Handler',
+    avatar: '/images/sam.png',
+    banner: '/images/sambanner.gif',
+    color: 'bg-yellow-400',
+    tiktokUrl: 'https://www.tiktok.com/@cosa_sam',
+    description:
+      'Responsible for coordinating members and maintaining activity.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-yellow-400',
+  },
+
+  {
+    name: 'kaii',
+    role: 'Area Handler',
+    avatar: '/images/kai.png',
+    banner: '/images/kaibanner.gif',
+    color: 'bg-red-400',
+    tiktokUrl: 'https://www.tiktok.com/@jisatsu.e',
+    description:
+      'Handles operations and supports Crew Management.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-red-400',
+  },
 ]
 
 const otherMembers = [
-  { name: 'aquarius', role: 'Admin', avatar: '/images/aqua.png' },
-  { name: 'jiro', role: 'Admin', avatar: '/images/jiro.png' },
-  { name: 'lau', role: 'Hall of Fame', avatar: '/images/lau.png' },
-  { name: 'sica', role: 'Hall of Fame', avatar: '/images/sica.png' },
-  { name: 'elie', role: 'Hall of Fame', avatar: '/images/elie.png' },
-  { name: 'nadia', role: 'Hall of Fame', avatar: '/images/nadia.png' },
-  { name: 'mik', role: 'Hall of Fame', avatar: '/images/mik.png' },
+  {
+    name: 'aquarius',
+    role: 'Admin',
+    avatar: '/images/aqua.png',
+
+    description:
+      'Trusted administrator of the community.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-green-400',
+  },
+
+  {
+    name: 'jiro',
+    role: 'Admin',
+    avatar: '/images/jiro.png',
+
+    description:
+      'Experienced administrator and active member.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-green-400',
+  },
+
+  {
+    name: 'lau',
+    role: 'Hall of Fame',
+    avatar: '/images/lau.png',
+
+    description:
+      'Recognized Hall of Fame.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-yellow-400',
+  },
+
+  {
+    name: 'sica',
+    role: 'Hall of Fame',
+    avatar: '/images/sica.png',
+
+    description:
+      'Recognized Hall of Fame.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-yellow-400',
+  },
+
+  {
+    name: 'elie',
+    role: 'Hall of Fame',
+    avatar: '/images/elie.png',
+
+    description:
+      'Known for loyalty and contributions.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-yellow-400',
+  },
+
+  {
+    name: 'nadia',
+    role: 'Hall of Fame',
+    avatar: '/images/nadia.png',
+
+    description:
+      'Dedicated and highly respected member.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-yellow-400',
+  },
+
+  {
+    name: 'mik',
+    role: 'Hall of Fame',
+    avatar: '/images/mik.png',
+
+    description:
+      'Recognized Hall of Fame.',
+    discordUrl: 'https://discord.gg/GFZZtQUFCR',
+    profileUrl: 'https://discord.gg/GFZZtQUFCR',
+    statusColor: 'bg-yellow-400',
+  },
+]
+
+const eliteMembers = [
+  {
+    name: 'unknown',
+    role: 'none',
+    avatar: '/images/unk.png',
+
+    description:
+      'Elite unit member of Global CosaNostra.',
+    discordUrl: 'https://discord.com/users/131313131313131313',
+    profileUrl: 'https://yourwebsite.com/reign',
+    statusColor: 'bg-red-400',
+  },
+
+  {
+    name: 'unknown',
+    role: 'none',
+    avatar: '/images/unk.png',
+
+    description:
+      'Highly skilled and respected elite member.',
+    discordUrl: 'https://discord.com/users/141414141414141414',
+    profileUrl: 'https://yourwebsite.com/vex',
+    statusColor: 'bg-red-400',
+  },
+
+  {
+    name: 'unknown',
+    role: 'none',
+    avatar: '/images/unk.png',
+
+    description:
+      'Elite operative with strong reputation.',
+    discordUrl: 'https://discord.com/users/151515151515151515',
+    profileUrl: 'https://yourwebsite.com/akira',
+    statusColor: 'bg-red-400',
+  },
+
+  {
+    name: 'unknown',
+    role: 'none',
+    avatar: '/images/unk.png',
+
+    description:
+      'Recognized for skill and dedication.',
+    discordUrl: 'https://discord.com/users/161616161616161616',
+    profileUrl: 'https://yourwebsite.com/zane',
+    statusColor: 'bg-red-400',
+  },
+
+  {
+    name: 'unknown',
+    role: 'none',
+    avatar: '/images/unk.png',
+
+    description:
+      'Elite division member with strong leadership.',
+    discordUrl: 'https://discord.com/users/171717171717171717',
+    profileUrl: 'https://yourwebsite.com/nova',
+    statusColor: 'bg-red-400',
+  },
 ]
 
 export default function Hero() {
@@ -239,7 +430,6 @@ export default function Hero() {
 
     setLiked(updatedLiked)
 
-    // SAVE TO LOCAL STORAGE
     localStorage.setItem('cosanostra_likes', updatedLikes.toString())
     localStorage.setItem('cosanostra_liked', updatedLiked.toString())
   }
@@ -283,33 +473,89 @@ export default function Hero() {
           Global CosaNostra
         </motion.p>
 
-        {/* MAIN STAFF */}
-        <div className="mt-16 flex flex-wrap justify-center gap-6">
-          {mainStaff.map((item, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ y: -10, scale: 1.05 }}
-              onClick={() => setSelected(item)}
-              className="w-[170px] backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-5 text-center cursor-pointer"
-            >
-              <img
-                src={item.avatar}
-                className="w-20 h-20 mx-auto rounded-full object-cover border border-white/20"
-              />
+ {/* MAIN STAFF */}
+<div className="mt-16 flex flex-wrap justify-center gap-6">
+  {mainStaff.map((item, i) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: i * 0.1,
+        duration: 0.5,
+      }}
+      whileHover={{
+        y: -12,
+        scale: 1.05,
+      }}
+      onClick={() => setSelected(item)}
+      className="group relative w-[180px] overflow-hidden rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-5 text-center cursor-pointer"
+    >
 
-              <div className={`w-3 h-3 mx-auto mt-2 rounded-full ${item.color}`} />
+      {/* GLOW */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-white/10 blur-3xl rounded-full" />
+      </div>
 
-              <h2 className="mt-3 text-sm font-semibold flex items-center justify-center gap-2">
-                {item.name}
-                <FaDiscord className="text-indigo-400" />
-              </h2>
+      {/* SHINE EFFECT */}
+      <motion.div
+        initial={{ x: '-120%' }}
+        whileHover={{ x: '220%' }}
+        transition={{ duration: 1 }}
+        className="absolute top-0 left-0 w-20 h-full bg-white/10 skew-x-12 blur-xl"
+      />
 
-              <p className="text-xs text-gray-500">{item.role}</p>
-            </motion.div>
-          ))}
-        </div>
+      {/* AVATAR */}
+      <div className="relative w-fit mx-auto">
+        <motion.img
+          whileHover={{
+            scale: 1.08,
+            rotate: 2,
+          }}
+          transition={{ type: 'spring', stiffness: 300 }}
+          src={item.avatar}
+          className="w-24 h-24 rounded-full object-cover border-2 border-white/20 shadow-2xl"
+        />
 
-        {/* MARQUEE */}
+        {/* ONLINE DOT */}
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [1, 0.6, 1],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 2,
+          }}
+          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-black ${item.color}`}
+        />
+      </div>
+
+      {/* NAME */}
+      <motion.h2
+        whileHover={{ scale: 1.05 }}
+        className="mt-4 text-sm font-semibold flex items-center justify-center gap-2"
+      >
+        {item.name}
+        <FaDiscord className="text-indigo-400" />
+      </motion.h2>
+
+      {/* ROLE */}
+      <p className="text-xs text-gray-400 mt-1 tracking-wide">
+        {item.role}
+      </p>
+
+      {/* BOTTOM LINE */}
+      <motion.div
+        initial={{ width: 0 }}
+        whileHover={{ width: '60%' }}
+        transition={{ duration: 0.3 }}
+        className="h-[2px] bg-white/30 mx-auto mt-4 rounded-full"
+      />
+    </motion.div>
+  ))}
+</div>
+        {/* FIRST MARQUEE */}
         <div
           className="mt-10 w-full flex justify-center overflow-hidden"
           onMouseEnter={() => setPaused(true)}
@@ -335,6 +581,45 @@ export default function Hero() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* SECOND LOOPING LINE */}
+        <div className="mt-3 w-full overflow-hidden flex justify-center">
+          <div className="w-[850px] overflow-hidden">
+            <motion.div
+              animate={{
+                x: [0, -900],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 20,
+                ease: 'linear',
+              }}
+              className="flex gap-4 w-max"
+            >
+              {[...eliteMembers, ...eliteMembers, ...eliteMembers].map((item, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                  onClick={() => setSelected(item)}
+                  className="min-w-[140px] p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
+                >
+                  <img
+                    src={item.avatar}
+                    className="w-10 h-10 mx-auto rounded-full mb-2 object-cover"
+                  />
+
+                  <p className="text-sm font-semibold">
+                    {item.name}
+                  </p>
+
+                  <p className="text-xs text-gray-500">
+                    {item.role}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>
@@ -467,37 +752,280 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* MODAL */}
-      <AnimatePresence>
-        {selected && (
+{/* MODAL */}
+<AnimatePresence>
+  {selected && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setSelected(null)}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-2xl overflow-hidden"
+    >
+
+      {/* BACKGROUND GLOW */}
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+        }}
+        className="absolute w-[500px] h-[500px] rounded-full bg-white/10 blur-3xl"
+      />
+
+      {/* CARD */}
+      <motion.div
+        initial={{
+          scale: 0.7,
+          opacity: 0,
+          y: 100,
+          rotateX: 20,
+        }}
+        animate={{
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+        }}
+        exit={{
+          scale: 0.7,
+          opacity: 0,
+          y: 100,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 120,
+          damping: 14,
+        }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-[420px] overflow-hidden rounded-[35px] border border-white/10 bg-[#080808]/90 backdrop-blur-3xl shadow-[0_0_100px_rgba(255,255,255,0.08)]"
+      >
+
+        {/* ANIMATED BORDER */}
+        <motion.div
+          animate={{
+            backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 6,
+            ease: 'linear',
+          }}
+          className="absolute inset-0 opacity-20 blur-2xl"
+          style={{
+            background:
+              'linear-gradient(120deg, rgba(255,255,255,0.4), transparent, rgba(255,255,255,0.3))',
+            backgroundSize: '200% 200%',
+          }}
+        />
+
+        {/* BANNER */}
+        <div className="relative h-[170px] overflow-hidden">
+
+          <motion.img
+            animate={{
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 10,
+            }}
+            src={selected.banner || '/images/wao.gif'}
+            className="w-full h-full object-cover"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-[#080808]" />
+
+          {/* SHINE */}
           <motion.div
+            animate={{
+              x: ['-120%', '220%'],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 3,
+              ease: 'linear',
+            }}
+            className="absolute top-0 left-0 w-32 h-full bg-white/10 skew-x-12 blur-xl"
+          />
+        </div>
+
+        {/* CONTENT */}
+        <div className="relative px-7 pb-7">
+
+          {/* AVATAR */}
+          <div className="relative w-fit mx-auto -mt-16">
+
+            {/* GLOW */}
+            <motion.div
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.4, 0.7, 0.4],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 3,
+              }}
+              className="absolute inset-0 rounded-full bg-white/20 blur-3xl"
+            />
+
+            {/* OUTER RING */}
+            <motion.div
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 10,
+                ease: 'linear',
+              }}
+              className="absolute inset-[-10px] rounded-full border border-white/20"
+            />
+
+            {/* IMAGE */}
+            <motion.img
+              whileHover={{
+                scale: 1.05,
+              }}
+              animate={{
+                y: [0, -4, 0],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 3,
+              }}
+              src={selected.avatar}
+              className="relative w-32 h-32 rounded-full object-cover border-[3px] border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.2)]"
+            />
+
+            {/* STATUS */}
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [1, 0.5, 1],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 2,
+              }}
+              className={`absolute bottom-3 right-3 w-5 h-5 rounded-full border-4 border-[#080808] ${selected.statusColor}`}
+            />
+          </div>
+
+          {/* NAME */}
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 text-3xl font-black tracking-wide flex items-center justify-center gap-3"
+          >
+            {selected.name}
+
+            <motion.div
+              animate={{
+                rotate: [0, 10, -10, 0],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 2,
+              }}
+            >
+              <FaDiscord className="text-indigo-400 text-xl" />
+            </motion.div>
+          </motion.h2>
+
+          {/* ROLE */}
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelected(null)}
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-xl"
+            transition={{ delay: 0.3 }}
+            className="text-gray-400 text-sm mt-2 tracking-[3px] uppercase text-center"
           >
-            <motion.div
-              initial={{ scale: 0.7, y: 80, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.7, y: 80, opacity: 0 }}
-              className="w-[320px] rounded-3xl bg-[#0f0f0f] border border-white/10 p-6 text-center"
+            {selected.role}
+          </motion.p>
+
+          {/* DIVIDER */}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: '70%' }}
+            transition={{ delay: 0.4 }}
+            className="h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent mx-auto mt-6"
+          />
+
+          {/* DESCRIPTION */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-sm text-gray-300 leading-relaxed mt-6 text-center"
+          >
+            {selected.description}
+          </motion.p>
+
+          {/* BUTTONS */}
+          <div className="flex items-center justify-center gap-4 mt-7">
+
+            {/* PROFILE */}
+            <motion.a
+              href={selected.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.95,
+              }}
+              className="px-5 py-3 rounded-2xl bg-white text-black text-sm font-semibold inline-flex items-center justify-center shadow-xl"
             >
-              <img
-                src={selected.avatar}
-                className="w-24 h-24 mx-auto rounded-full border border-white/20"
-              />
+              Profile
+            </motion.a>
 
-              <h2 className="mt-4 text-xl font-bold flex items-center justify-center gap-2">
-                {selected.name}
-                <FaDiscord className="text-indigo-400" />
-              </h2>
+            {/* DISCORD */}
+            <motion.a
+              href={selected.discordUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.95,
+              }}
+              className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/20 flex items-center justify-center"
+            >
+              <FaDiscord className="text-indigo-400 text-lg" />
+            </motion.a>
 
-              <p className="text-gray-400 text-sm mt-1">{selected.role}</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* TIKTOK */}
+            <motion.a
+              href={selected.tiktokUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                scale: 1.05,
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.95,
+              }}
+              className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center"
+            >
+              <FaTiktok className="text-white text-lg" />
+            </motion.a>
+
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </section>
   )
 }
