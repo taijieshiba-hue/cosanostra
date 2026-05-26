@@ -16,7 +16,34 @@ import {
   FaVolumeUp,
   FaHeart,
   FaTiktok,
+  FaForward, 
+  FaBackward, 
 } from 'react-icons/fa'
+
+
+const playlist = [
+  {
+    title: 'Noticed',
+    artist: 'Lil Mosey',
+    cover: '/images/mosey.jpg',
+    src: '/music/mosey.mp3',
+  },
+
+  {
+    title: 'Stay',
+    artist: 'Kid Laroi',
+    cover: '/images/stay.png',
+    src: '/music/stay.mp3',
+  },
+
+  {
+    title: 'Mood Remix',
+    artist: '24kGoldn',
+    cover: '/images/mood.png',
+    src: '/music/mood.mp3',
+  },
+]
+
 
 const mainStaff = [
   {
@@ -237,8 +264,9 @@ export default function Hero() {
   const [paused, setPaused] = useState(false)
 
   // 🎵 MUSIC STATES
-  const [musicPaused, setMusicPaused] = useState(false)
-  const [muted, setMuted] = useState(false)
+const [musicPaused, setMusicPaused] = useState(false)
+const [muted, setMuted] = useState(false)
+const [currentSong, setCurrentSong] = useState(0)
 
   // ❤️ LIKE STATES
   const [liked, setLiked] = useState(false)
@@ -412,6 +440,60 @@ export default function Hero() {
     setMuted(!muted)
   }
 
+
+  const nextSong = () => {
+  if (!audioRef.current) return
+
+  const nextIndex =
+    currentSong + 1 >= playlist.length
+      ? 0
+      : currentSong + 1
+
+  setCurrentSong(nextIndex)
+
+  setTimeout(() => {
+    audioRef.current?.play()
+  }, 100)
+
+  setMusicPaused(false)
+}
+
+const prevSong = () => {
+  if (!audioRef.current) return
+
+  const prevIndex =
+    currentSong - 1 < 0
+      ? playlist.length - 1
+      : currentSong - 1
+
+  setCurrentSong(prevIndex)
+
+  setTimeout(() => {
+    audioRef.current?.play()
+  }, 100)
+
+  setMusicPaused(false)
+}
+
+
+
+useEffect(() => {
+  const audio = audioRef.current
+
+  if (!audio) return
+
+  const handleEnded = () => {
+    nextSong()
+  }
+
+  audio.addEventListener('ended', handleEnded)
+
+  return () => {
+    audio.removeEventListener('ended', handleEnded)
+  }
+}, [currentSong])
+
+
   // =========================
   // ❤️ LIKE BUTTON
   // =========================
@@ -473,85 +555,171 @@ export default function Hero() {
           Global CosaNostra
         </motion.p>
 
- {/* MAIN STAFF */}
-<div className="mt-10 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-6 px-2">
+{/* MAIN STAFF */}
+<div className="mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-2 max-w-[820px]">
+
   {mainStaff.map((item, i) => (
     <motion.div
       key={i}
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
       transition={{
-        delay: i * 0.1,
         duration: 0.5,
+        delay: i * 0.08,
       }}
       whileHover={{
-        y: -12,
-        scale: 1.05,
+        y: -8,
+        scale: 1.03,
       }}
       onClick={() => setSelected(item)}
-      className="group relative w-[140px] sm:w-[180px] overflow-hidden rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-5 text-center cursor-pointer"
+      className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-black/40 backdrop-blur-2xl cursor-pointer"
     >
 
-      {/* GLOW */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-white/10 blur-3xl rounded-full" />
-      </div>
-
-      {/* SHINE EFFECT */}
-      <motion.div
-        initial={{ x: '-120%' }}
-        whileHover={{ x: '220%' }}
-        transition={{ duration: 1 }}
-        className="absolute top-0 left-0 w-20 h-full bg-white/10 skew-x-12 blur-xl"
-      />
-
-      {/* AVATAR */}
-      <div className="relative w-fit mx-auto">
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.img
           whileHover={{
-            scale: 1.08,
-            rotate: 2,
-          }}
-          transition={{ type: 'spring', stiffness: 300 }}
-          src={item.avatar}
-          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-white/20 shadow-2xl"
-        />
-
-        {/* ONLINE DOT */}
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [1, 0.6, 1],
+            scale: 1.06,
           }}
           transition={{
-            repeat: Infinity,
-            duration: 2,
+            duration: 0.5,
           }}
-          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-black ${item.color}`}
+          src={item.banner}
+          className="w-full h-full object-cover opacity-25"
         />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black" />
       </div>
 
-      {/* NAME */}
-      <motion.h2
-        whileHover={{ scale: 1.05 }}
-        className="mt-4 text-sm font-semibold flex items-center justify-center gap-2"
-      >
-        {item.name}
-        <FaDiscord className="text-indigo-400" />
-      </motion.h2>
-
-      {/* ROLE */}
-      <p className="text-xs text-gray-400 mt-1 tracking-wide">
-        {item.role}
-      </p>
-
-      {/* BOTTOM LINE */}
+      {/* LIGHT */}
       <motion.div
-        initial={{ width: 0 }}
-        whileHover={{ width: '60%' }}
-        transition={{ duration: 0.3 }}
-        className="h-[2px] bg-white/30 mx-auto mt-4 rounded-full"
+        animate={{
+          opacity: [0.2, 0.5, 0.2],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+        }}
+        className="absolute -top-10 left-1/2 -translate-x-1/2 w-28 h-28 bg-white/10 rounded-full blur-3xl"
       />
+
+      {/* CONTENT */}
+      <div className="relative z-10 flex flex-col items-center px-3 py-4 sm:px-4 sm:py-5">
+
+        {/* AVATAR */}
+        <div className="relative">
+
+          {/* RING */}
+          <motion.div
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 10,
+              ease: 'linear',
+            }}
+            className="absolute inset-[-6px] rounded-full border border-dashed border-white/15"
+          />
+
+          {/* IMAGE */}
+          <motion.img
+            whileHover={{
+              scale: 1.06,
+            }}
+            src={item.avatar}
+            className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-white/20 shadow-[0_0_25px_rgba(255,255,255,0.12)]"
+          />
+
+          {/* STATUS */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+            }}
+            className={`absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full border-2 border-black ${item.color}`}
+          >
+
+            {/* PING EFFECT */}
+            <motion.div
+              animate={{
+                scale: [1, 2.2],
+                opacity: [0.6, 0],
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 2,
+                ease: 'easeOut',
+              }}
+              className={`absolute inset-0 rounded-full ${item.color}`}
+            />
+
+          </motion.div>
+
+          {/* ONLINE TEXT */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            className="absolute -bottom-6 left-1/2 -translate-x-1/2 pointer-events-none"
+          >
+            <div className="px-2 py-[3px] rounded-full bg-black/70 border border-white/10 backdrop-blur-xl whitespace-nowrap">
+              <p className="text-[8px] uppercase tracking-[2px] text-gray-300">
+                Active Now
+              </p>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* NAME */}
+        <h2 className="mt-3 text-sm sm:text-[15px] font-bold uppercase tracking-[1px] text-center">
+          {item.name}
+        </h2>
+
+        {/* ROLE */}
+        <div className="mt-1 px-2 py-[4px] rounded-full bg-white/10 border border-white/10">
+          <p className="text-[9px] sm:text-[10px] uppercase tracking-[2px] text-gray-300">
+            {item.role}
+          </p>
+        </div>
+
+        {/* MINI DESCRIPTION */}
+        <p className="mt-2 text-[10px] sm:text-[11px] text-gray-400 text-center leading-relaxed line-clamp-2">
+          {item.description}
+        </p>
+
+        {/* SOCIALS */}
+        <div className="mt-3 flex items-center gap-2">
+
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+            }}
+            className="w-7 h-7 rounded-xl bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center"
+          >
+            <FaDiscord className="text-indigo-400 text-[11px]" />
+          </motion.div>
+
+          <motion.div
+            whileHover={{
+              scale: 1.1,
+            }}
+            className="w-7 h-7 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center"
+          >
+            <FaTiktok className="text-white text-[11px]" />
+          </motion.div>
+
+        </div>
+      </div>
     </motion.div>
   ))}
 </div>
@@ -659,98 +827,271 @@ export default function Hero() {
         </button>
       </motion.div>
 
-      {/* 🎵 MUSIC PANEL */}
-      <motion.div
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50"
-      >
-        <div className="w-[260px] sm:w-[320px] backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-4 shadow-2xl">
+{/* 🎵 MUSIC PANEL */}
+<motion.div
+  initial={{ opacity: 0, x: -30 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7 }}
+  whileHover={{ y: -3 }}
+  className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50"
+>
+  <div className="
+    relative overflow-hidden
+    w-[220px] sm:w-[250px]
+    rounded-2xl
+    border border-white/10
+    bg-black/35
+    backdrop-blur-2xl
+    shadow-[0_0_40px_rgba(255,255,255,0.05)]
+  ">
 
-          <div className="flex items-center gap-4">
+    {/* GLOW */}
+    <motion.div
+      animate={{
+        opacity: [0.1, 0.25, 0.1],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 3,
+      }}
+      className="absolute -top-8 -left-8 w-28 h-28 bg-white/10 rounded-full blur-3xl"
+    />
 
-            {/* COVER */}
-            <motion.img
-              animate={musicPaused ? {} : { rotate: 360 }}
-              transition={{
-                repeat: Infinity,
-                duration: 12,
-                ease: 'linear',
-              }}
-              src="/images/mosey.jpg"
-              className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-cover border border-white/10"
-            />
+    {/* SHINE */}
+    <motion.div
+      animate={{
+        x: ['-120%', '220%'],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 5,
+        ease: 'linear',
+      }}
+      className="absolute top-0 left-0 w-16 h-full bg-white/5 skew-x-12 blur-lg"
+    />
 
-            {/* INFO */}
-            <div className="flex-1 overflow-hidden">
+    <div className="relative flex items-center gap-3 p-3">
 
-              <h2 className="text-sm font-semibold truncate">
-                Noticed
-              </h2>
+      {/* COVER */}
+      <div className="relative flex-shrink-0">
 
-              <p className="text-xs text-gray-400 truncate">
-                Lil Mosey
-              </p>
+        {/* PULSE */}
+        {!musicPaused && (
+          <motion.div
+            animate={{
+              scale: [1, 1.2],
+              opacity: [0.4, 0],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+            }}
+            className="absolute inset-[-3px] rounded-xl border border-white/20"
+          />
+        )}
 
-              {/* CONTROLS */}
-              <div className="flex items-center gap-3 mt-4">
+        <motion.img
+          animate={
+            musicPaused
+              ? {}
+              : {
+                  rotate: 360,
+                }
+          }
+          transition={{
+            repeat: Infinity,
+            duration: 10,
+            ease: 'linear',
+          }}
+          src={playlist[currentSong].cover}
+          className="
+            relative
+            w-12 h-12
+            rounded-xl
+            object-cover
+            border border-white/10
+          "
+        />
 
-                {/* PLAY / PAUSE */}
-                <button
-                  onClick={togglePause}
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition"
-                >
-                  {musicPaused ? (
-                    <FaPlay className="text-xs" />
-                  ) : (
-                    <FaPause className="text-xs" />
-                  )}
-                </button>
+        {/* CENTER DISC */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-black/70 border border-white/20" />
+        </div>
+      </div>
 
-                {/* MUTE */}
-                <button
-                  onClick={toggleMute}
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition"
-                >
-                  {muted ? (
-                    <FaVolumeMute className="text-xs" />
-                  ) : (
-                    <FaVolumeUp className="text-xs" />
-                  )}
-                </button>
+      {/* INFO */}
+      <div className="flex-1 min-w-0">
 
-              </div>
-            </div>
+        <div className="flex items-center gap-2">
 
-            {/* VISUALIZER */}
-            <div className="flex items-end gap-[3px] h-10">
-              {[12, 18, 9, 22].map((h, i) => (
-                <motion.span
-                  key={i}
-                  animate={
-                    musicPaused
-                      ? { height: h }
-                      : {
-                          height: [h, h + 10, h - 4, h],
-                        }
-                  }
-                  transition={{
-                    repeat: Infinity,
-                    duration: 1 + i * 0.2,
-                  }}
-                  className="w-[3px] bg-white rounded-full"
-                />
-              ))}
-            </div>
+          <motion.div
+            animate={{
+              opacity: [0.4, 1, 0.4],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 1.5,
+            }}
+            className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0"
+          />
+
+          <p className="text-[9px] uppercase tracking-[2px] text-gray-400 truncate">
+            Now Playing
+          </p>
+        </div>
+
+<h2 className="text-sm font-semibold truncate mt-1">
+  {playlist[currentSong].title}
+</h2>
+
+<p className="text-[11px] text-gray-400 truncate">
+  {playlist[currentSong].artist}
+</p>
+
+        {/* PROGRESS */}
+        <div className="mt-2 w-full h-[2px] rounded-full bg-white/10 overflow-hidden">
+          <motion.div
+            animate={{
+              x: ['-100%', '220%'],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 4,
+              ease: 'linear',
+            }}
+            className="w-10 h-full bg-white rounded-full"
+          />
+        </div>
+
+        {/* CONTROLS */}
+        <div className="flex items-center justify-between mt-3">
+
+<div className="flex items-center gap-2">
+
+  {/* PREVIOUS */}
+  <motion.button
+    whileTap={{ scale: 0.9 }}
+    whileHover={{ scale: 1.05 }}
+    onClick={prevSong}
+    className="
+      w-7 h-7
+      rounded-full
+      bg-white/10
+      hover:bg-white/20
+      border border-white/10
+      flex items-center justify-center
+      transition
+    "
+  >
+    <FaBackward className="text-[9px]" />
+  </motion.button>
+
+  {/* PLAY */}
+  <motion.button
+    whileTap={{ scale: 0.9 }}
+    whileHover={{ scale: 1.05 }}
+    onClick={togglePause}
+    className="
+      w-7 h-7
+      rounded-full
+      bg-white/10
+      hover:bg-white/20
+      border border-white/10
+      flex items-center justify-center
+      transition
+    "
+  >
+    {musicPaused ? (
+      <FaPlay className="text-[10px]" />
+    ) : (
+      <FaPause className="text-[10px]" />
+    )}
+  </motion.button>
+
+  {/* NEXT */}
+  <motion.button
+    whileTap={{ scale: 0.9 }}
+    whileHover={{ scale: 1.05 }}
+    onClick={nextSong}
+    className="
+      w-7 h-7
+      rounded-full
+      bg-white/10
+      hover:bg-white/20
+      border border-white/10
+      flex items-center justify-center
+      transition
+    "
+  >
+    <FaForward className="text-[9px]" />
+  </motion.button>
+
+  {/* MUTE */}
+  <motion.button
+    whileTap={{ scale: 0.9 }}
+    whileHover={{ scale: 1.05 }}
+    onClick={toggleMute}
+    className="
+      w-7 h-7
+      rounded-full
+      bg-white/10
+      hover:bg-white/20
+      border border-white/10
+      flex items-center justify-center
+      transition
+    "
+  >
+    {muted ? (
+      <FaVolumeMute className="text-[10px]" />
+    ) : (
+      <FaVolumeUp className="text-[10px]" />
+    )}
+  </motion.button>
+
+</div>
+
+          {/* MINI VISUALIZER */}
+          <div className="flex items-end gap-[2px] h-6">
+            {[8, 14, 10, 16].map((h, i) => (
+              <motion.span
+                key={i}
+                animate={
+                  musicPaused
+                    ? { height: h }
+                    : {
+                        height: [
+                          h,
+                          h + 6,
+                          h - 3,
+                          h,
+                        ],
+                      }
+                }
+                transition={{
+                  repeat: Infinity,
+                  duration: 1 + i * 0.15,
+                }}
+                className="w-[2px] rounded-full bg-white"
+              />
+            ))}
           </div>
 
-          {/* AUDIO */}
-          <audio ref={audioRef} autoPlay loop>
-            <source src="/music/mosey.mp3" type="audio/mpeg" />
-          </audio>
         </div>
-      </motion.div>
+      </div>
+    </div>
+
+    {/* BOTTOM LINE */}
+    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+    {/* AUDIO */}
+<audio
+  ref={audioRef}
+  autoPlay
+  muted={muted}
+  src={playlist[currentSong].src}
+/>
+  </div>
+</motion.div>
 
 {/* MODAL */}
 <AnimatePresence>
