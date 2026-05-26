@@ -25,7 +25,7 @@ const mainStaff = [
     avatar: '/images/sasuke.jpg',
     banner: '/images/ninebanner.gif',
     color: 'bg-green-400',
-    tiktokUrl: 'https://tiktok.com/@nine',
+    tiktokUrl: 'https://www.tiktok.com/@aintnine',
     description:
       'Founder of Global CosaNostra on Bloxfruit. Strategic, respected, and highly active within the organization.',
     discordUrl: 'https://discord.gg/GFZZtQUFCR',
@@ -39,7 +39,7 @@ const mainStaff = [
     avatar: '/images/crix.png',
     banner: '/images/crixbanner.gif',
     color: 'bg-green-400',
-    tiktokUrl: 'https://tiktok.com/@crixxus',
+    tiktokUrl: 'https://tiktok.com/',
     description:
       'Chairman of the Crew. Oversees internal operations and management.',
     discordUrl: 'https://discord.gg/GFZZtQUFCR',
