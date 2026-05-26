@@ -463,18 +463,18 @@ export default function Hero() {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-10">
 
-        <motion.h1 className="text-6xl md:text-[9rem] font-black uppercase">
+        <motion.h1 className="text-4xl sm:text-5xl md:text-[9rem] font-black uppercase text-center leading-none">
           COSANOSTRA
         </motion.h1>
 
-        <motion.p className="tracking-[8px] text-gray-400 text-sm mt-2">
+        <motion.p className="tracking-[4px] sm:tracking-[8px] text-gray-400 text-xs sm:text-sm mt-2 text-center">
           Global CosaNostra
         </motion.p>
 
  {/* MAIN STAFF */}
-<div className="mt-16 flex flex-wrap justify-center gap-6">
+<div className="mt-10 sm:mt-16 flex flex-wrap justify-center gap-4 sm:gap-6 px-2">
   {mainStaff.map((item, i) => (
     <motion.div
       key={i}
@@ -489,7 +489,7 @@ export default function Hero() {
         scale: 1.05,
       }}
       onClick={() => setSelected(item)}
-      className="group relative w-[180px] overflow-hidden rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-5 text-center cursor-pointer"
+      className="group relative w-[140px] sm:w-[180px] overflow-hidden rounded-[30px] border border-white/10 bg-white/5 backdrop-blur-2xl p-5 text-center cursor-pointer"
     >
 
       {/* GLOW */}
@@ -514,7 +514,7 @@ export default function Hero() {
           }}
           transition={{ type: 'spring', stiffness: 300 }}
           src={item.avatar}
-          className="w-24 h-24 rounded-full object-cover border-2 border-white/20 shadow-2xl"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-white/20 shadow-2xl"
         />
 
         {/* ONLINE DOT */}
@@ -561,18 +561,18 @@ export default function Hero() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div className="w-[850px] overflow-hidden">
+          <div className="w-full max-w-[850px] overflow-hidden px-2">
             <div ref={trackRef} className="flex gap-4 w-max">
               {[...otherMembers, ...otherMembers].map((item, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setSelected(item)}
-                  className="min-w-[140px] p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
+                  className="min-w-[110px] sm:min-w-[140px] p-2 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
                 >
                   <img
                     src={item.avatar}
-                    className="w-10 h-10 mx-auto rounded-full mb-2 object-cover"
+                    className="w-8 h-8 sm:w-10 sm:h-10 mx-auto rounded-full mb-2 object-cover"
                   />
 
                   <p className="text-sm font-semibold">{item.name}</p>
@@ -586,7 +586,7 @@ export default function Hero() {
 
         {/* SECOND LOOPING LINE */}
         <div className="mt-3 w-full overflow-hidden flex justify-center">
-          <div className="w-[850px] overflow-hidden">
+          <div className="w-full max-w-[850px] overflow-hidden px-2">
             <motion.div
               animate={{
                 x: [0, -900],
@@ -603,11 +603,11 @@ export default function Hero() {
                   key={i}
                   whileHover={{ y: -5, scale: 1.05 }}
                   onClick={() => setSelected(item)}
-                  className="min-w-[140px] p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
+                  className="min-w-[110px] sm:min-w-[140px] p-2 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
                 >
                   <img
                     src={item.avatar}
-                    className="w-10 h-10 mx-auto rounded-full mb-2 object-cover"
+                    className="w-8 h-8 sm:w-10 sm:h-10 mx-auto rounded-full mb-2 object-cover"
                   />
 
                   <p className="text-sm font-semibold">
@@ -629,11 +629,11 @@ export default function Hero() {
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="fixed bottom-6 right-6 z-50"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
       >
         <button
           onClick={toggleLike}
-          className="group flex items-center gap-3 px-5 py-3 rounded-2xl backdrop-blur-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+          className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl backdrop-blur-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
         >
           <motion.div
             whileTap={{ scale: 1.3 }}
@@ -664,9 +664,9 @@ export default function Hero() {
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
-        className="fixed bottom-6 left-6 z-50"
+        className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50"
       >
-        <div className="w-[320px] backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-4 shadow-2xl">
+        <div className="w-[260px] sm:w-[320px] backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-4 shadow-2xl">
 
           <div className="flex items-center gap-4">
 
@@ -679,7 +679,7 @@ export default function Hero() {
                 ease: 'linear',
               }}
               src="/images/mosey.jpg"
-              className="w-16 h-16 rounded-2xl object-cover border border-white/10"
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl object-cover border border-white/10"
             />
 
             {/* INFO */}
@@ -801,7 +801,7 @@ export default function Hero() {
           damping: 14,
         }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-[420px] overflow-hidden rounded-[35px] border border-white/10 bg-[#080808]/90 backdrop-blur-3xl shadow-[0_0_100px_rgba(255,255,255,0.08)]"
+        className="relative w-[92%] max-w-[420px] overflow-hidden rounded-[35px] border border-white/10 bg-[#080808]/90 backdrop-blur-3xl shadow-[0_0_100px_rgba(255,255,255,0.08)]"
       >
 
         {/* ANIMATED BORDER */}
@@ -823,7 +823,7 @@ export default function Hero() {
         />
 
         {/* BANNER */}
-        <div className="relative h-[170px] overflow-hidden">
+        <div className="relative h-[140px] sm:h-[170px] overflow-hidden">
 
           <motion.img
             animate={{
@@ -898,7 +898,7 @@ export default function Hero() {
                 duration: 3,
               }}
               src={selected.avatar}
-              className="relative w-32 h-32 rounded-full object-cover border-[3px] border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.2)]"
+              className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-[3px] border-white/20 shadow-[0_0_50px_rgba(255,255,255,0.2)]"
             />
 
             {/* STATUS */}
@@ -920,7 +920,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mt-6 text-3xl font-black tracking-wide flex items-center justify-center gap-3"
+            className="mt-6 text-2xl sm:text-3xl font-black tracking-wide flex items-center justify-center gap-3"
           >
             {selected.name}
 
@@ -966,7 +966,7 @@ export default function Hero() {
           </motion.p>
 
           {/* BUTTONS */}
-          <div className="flex items-center justify-center gap-4 mt-7">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-7">
 
             {/* PROFILE */}
             <motion.a
