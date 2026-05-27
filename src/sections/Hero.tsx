@@ -547,13 +547,184 @@ useEffect(() => {
       {/* CONTENT */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-3 sm:px-6 py-8 sm:py-10 w-full">
 
-        <motion.h1 className="text-[2.7rem] sm:text-5xl md:text-[9rem] font-black uppercase text-center leading-none break-words">
-          COSANOSTRA
-        </motion.h1>
+        {/* HERO TITLE */}
+<div className="relative flex flex-col items-center">
 
-        <motion.p className="tracking-[4px] sm:tracking-[8px] text-gray-400 text-xs sm:text-sm mt-2 text-center">
-          Global CosaNostra
-        </motion.p>
+  {/* BACK GLOW */}
+  <motion.div
+    animate={{
+      opacity: [0.15, 0.35, 0.15],
+      scale: [1, 1.08, 1],
+    }}
+    transition={{
+      repeat: Infinity,
+      duration: 4,
+    }}
+    className="
+      absolute
+      top-1/2 left-1/2
+      -translate-x-1/2 -translate-y-1/2
+      w-[320px] sm:w-[500px] md:w-[900px]
+      h-[120px] sm:h-[200px]
+      bg-white/10
+      blur-3xl
+      rounded-full
+    "
+  />
+
+  {/* SMALL TOP TEXT */}
+  <motion.p
+    initial={{
+      opacity: 0,
+      y: -10,
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 1,
+    }}
+    className="
+      relative
+      text-[9px] sm:text-xs
+      tracking-[6px] sm:tracking-[10px]
+      uppercase
+      text-gray-500
+      mb-2
+    "
+  >
+    GLOBAL WORLDWIDE COMMUNITY
+  </motion.p>
+
+  {/* MAIN TITLE */}
+  <motion.h1
+    initial={{
+      opacity: 0,
+      y: 40,
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 1,
+    }}
+    className="
+      relative
+      text-[2.3rem]
+      xs:text-[2.7rem]
+      sm:text-6xl
+      md:text-[9rem]
+      font-black
+      uppercase
+      text-center
+      leading-none
+      break-words
+      tracking-tight
+    "
+  >
+
+    {/* SHINE EFFECT */}
+    <motion.span
+      animate={{
+        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 6,
+        ease: 'linear',
+      }}
+      className="
+        bg-[linear-gradient(90deg,#ffffff,#9ca3af,#ffffff)]
+        bg-[length:200%_200%]
+        bg-clip-text
+        text-transparent
+        drop-shadow-[0_0_35px_rgba(255,255,255,0.2)]
+      "
+    >
+      COSANOSTRA
+    </motion.span>
+
+  </motion.h1>
+
+  {/* SUBTITLE */}
+  <motion.div
+    initial={{
+      opacity: 0,
+      y: 15,
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      delay: 0.3,
+      duration: 1,
+    }}
+    className="relative mt-3 flex items-center gap-3"
+  >
+
+    {/* LEFT LINE */}
+    <motion.div
+      animate={{
+        opacity: [0.3, 1, 0.3],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 2,
+      }}
+      className="w-8 sm:w-14 h-[1px] bg-white/20"
+    />
+
+    {/* TEXT */}
+    <p
+      className="
+        tracking-[3px]
+        sm:tracking-[10px]
+        text-gray-300
+        text-[10px]
+        sm:text-sm
+        uppercase
+        whitespace-nowrap
+      "
+    >
+      Global CosaNostra
+    </p>
+
+    {/* RIGHT LINE */}
+    <motion.div
+      animate={{
+        opacity: [1, 0.3, 1],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 2,
+      }}
+      className="w-8 sm:w-14 h-[1px] bg-white/20"
+    />
+
+  </motion.div>
+
+  {/* BOTTOM FADE LINE */}
+  <motion.div
+    initial={{ width: 0 }}
+    animate={{ width: '70%' }}
+    transition={{
+      delay: 0.5,
+      duration: 1.2,
+    }}
+    className="
+      mt-5
+      h-[1px]
+      bg-gradient-to-r
+      from-transparent
+      via-white/20
+      to-transparent
+    "
+  />
+
+</div>
 
 {/* MAIN STAFF */}
 <div className="mt-8 sm:mt-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-1 sm:px-2 w-full max-w-[950px]">
@@ -723,6 +894,11 @@ useEffect(() => {
     </motion.div>
   ))}
 </div>
+
+
+
+
+
         {/* FIRST MARQUEE */}
         <div
           className="mt-10 w-full flex justify-center overflow-hidden"
@@ -829,48 +1005,64 @@ useEffect(() => {
 
 {/* 🎵 MUSIC PANEL */}
 <motion.div
-  initial={{ opacity: 0, x: -30 }}
+  initial={{ opacity: 0, x: -20 }}
   animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.7 }}
-  whileHover={{ y: -3 }}
-  className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50"
+  transition={{ duration: 0.6 }}
+  whileHover={{ y: -2 }}
+  className="fixed bottom-3 left-3 sm:bottom-5 sm:left-5 z-50"
 >
-  <div className="
-    relative overflow-hidden
-    w-[170px] sm:w-[250px]
-    rounded-2xl
-    border border-white/10
-    bg-black/35
-    backdrop-blur-2xl
-    shadow-[0_0_40px_rgba(255,255,255,0.05)]
-  ">
+  <div
+    className="
+      group
+      relative overflow-hidden
+      w-[150px] sm:w-[220px]
+      rounded-2xl
+      border border-white/10
+      bg-black/45
+      backdrop-blur-3xl
+      shadow-[0_0_30px_rgba(255,255,255,0.04)]
+    "
+  >
 
-    {/* GLOW */}
+    {/* TOP GLOW */}
     <motion.div
       animate={{
-        opacity: [0.1, 0.25, 0.1],
+        opacity: [0.08, 0.2, 0.08],
+        scale: [1, 1.1, 1],
       }}
       transition={{
         repeat: Infinity,
-        duration: 3,
+        duration: 4,
       }}
-      className="absolute -top-8 -left-8 w-28 h-28 bg-white/10 rounded-full blur-3xl"
+      className="absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 bg-white/10 blur-3xl rounded-full"
     />
 
-    {/* SHINE */}
+    {/* MOVING SHINE */}
     <motion.div
       animate={{
         x: ['-120%', '220%'],
       }}
       transition={{
         repeat: Infinity,
-        duration: 5,
+        duration: 6,
         ease: 'linear',
       }}
-      className="absolute top-0 left-0 w-16 h-full bg-white/5 skew-x-12 blur-lg"
+      className="absolute top-0 left-0 w-12 h-full bg-white/5 skew-x-12 blur-lg"
     />
 
-    <div className="relative flex items-center gap-2 sm:gap-3 p-2 sm:p-3">
+    {/* BORDER LIGHT */}
+    <motion.div
+      animate={{
+        opacity: [0.2, 0.5, 0.2],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 3,
+      }}
+      className="absolute inset-0 rounded-2xl border border-white/5 pointer-events-none"
+    />
+
+    <div className="relative flex items-center gap-2 p-2.5">
 
       {/* COVER */}
       <div className="relative flex-shrink-0">
@@ -890,6 +1082,7 @@ useEffect(() => {
           />
         )}
 
+        {/* SPINNING COVER */}
         <motion.img
           animate={
             musicPaused
@@ -900,159 +1093,198 @@ useEffect(() => {
           }
           transition={{
             repeat: Infinity,
-            duration: 10,
+            duration: 12,
             ease: 'linear',
           }}
           src={playlist[currentSong].cover}
           className="
             relative
-            w-12 h-12
+            w-10 h-10 sm:w-12 sm:h-12
             rounded-xl
             object-cover
             border border-white/10
+            shadow-[0_0_15px_rgba(255,255,255,0.08)]
           "
         />
 
         {/* CENTER DISC */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-black/70 border border-white/20" />
+          <div className="w-2 h-2 rounded-full bg-black border border-white/20" />
         </div>
+
+        {/* FLOATING DOT */}
+        {!musicPaused && (
+          <motion.div
+            animate={{
+              y: [0, -3, 0],
+              opacity: [0.4, 1, 0.4],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+            }}
+            className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"
+          />
+        )}
       </div>
 
       {/* INFO */}
       <div className="flex-1 min-w-0">
 
-        <div className="flex items-center gap-2">
+        {/* NOW PLAYING */}
+        <div className="flex items-center gap-1.5">
 
           <motion.div
             animate={{
-              opacity: [0.4, 1, 0.4],
+              opacity: [0.3, 1, 0.3],
             }}
             transition={{
               repeat: Infinity,
-              duration: 1.5,
+              duration: 1.4,
             }}
-            className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0"
+            className="w-1 h-1 rounded-full bg-green-400"
           />
 
-          <p className="text-[9px] uppercase tracking-[2px] text-gray-400 truncate">
+          <p className="text-[7px] sm:text-[8px] uppercase tracking-[2px] text-gray-500">
             Now Playing
           </p>
         </div>
 
-<h2 className="text-sm font-semibold truncate mt-1">
-  {playlist[currentSong].title}
-</h2>
+        {/* SONG */}
+        <h2 className="mt-1 text-[10px] sm:text-xs font-semibold truncate">
+          {playlist[currentSong].title}
+        </h2>
 
-<p className="text-[11px] text-gray-400 truncate">
-  {playlist[currentSong].artist}
-</p>
+        {/* ARTIST */}
+        <p className="text-[8px] sm:text-[10px] text-gray-400 truncate">
+          {playlist[currentSong].artist}
+        </p>
 
-        {/* PROGRESS */}
-        <div className="mt-2 w-full h-[2px] rounded-full bg-white/10 overflow-hidden">
+        {/* MINI PROGRESS */}
+        <div className="mt-2 relative h-[2px] w-full rounded-full bg-white/10 overflow-hidden">
+
           <motion.div
             animate={{
               x: ['-100%', '220%'],
             }}
             transition={{
               repeat: Infinity,
-              duration: 4,
+              duration: 3,
               ease: 'linear',
             }}
-            className="w-10 h-full bg-white rounded-full"
+            className="absolute top-0 w-8 h-full bg-white rounded-full"
           />
+
         </div>
 
         {/* CONTROLS */}
-        <div className="flex items-center justify-between mt-3">
+        <div className="mt-2 flex items-center justify-between">
 
-<div className="flex items-center gap-2">
+          {/* BUTTONS */}
+          <div className="flex items-center gap-1">
 
-  {/* PREVIOUS */}
-  <motion.button
-    whileTap={{ scale: 0.9 }}
-    whileHover={{ scale: 1.05 }}
-    onClick={prevSong}
-    className="
-      w-7 h-7
-      rounded-full
-      bg-white/10
-      hover:bg-white/20
-      border border-white/10
-      flex items-center justify-center
-      transition
-    "
-  >
-    <FaBackward className="text-[9px]" />
-  </motion.button>
+            {/* PREV */}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.08 }}
+              onClick={prevSong}
+              className="
+                w-5 h-5 sm:w-6 sm:h-6
+                rounded-full
+                bg-white/10
+                border border-white/10
+                hover:bg-white/20
+                flex items-center justify-center
+                transition
+              "
+            >
+              <FaBackward className="text-[7px]" />
+            </motion.button>
 
-  {/* PLAY */}
-  <motion.button
-    whileTap={{ scale: 0.9 }}
-    whileHover={{ scale: 1.05 }}
-    onClick={togglePause}
-    className="
-      w-7 h-7
-      rounded-full
-      bg-white/10
-      hover:bg-white/20
-      border border-white/10
-      flex items-center justify-center
-      transition
-    "
-  >
-    {musicPaused ? (
-      <FaPlay className="text-[10px]" />
-    ) : (
-      <FaPause className="text-[10px]" />
-    )}
-  </motion.button>
+            {/* PLAY */}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.08 }}
+              onClick={togglePause}
+              className="
+                relative
+                w-6 h-6 sm:w-7 sm:h-7
+                rounded-full
+                bg-white/15
+                border border-white/10
+                hover:bg-white/20
+                flex items-center justify-center
+                transition
+                overflow-hidden
+              "
+            >
 
-  {/* NEXT */}
-  <motion.button
-    whileTap={{ scale: 0.9 }}
-    whileHover={{ scale: 1.05 }}
-    onClick={nextSong}
-    className="
-      w-7 h-7
-      rounded-full
-      bg-white/10
-      hover:bg-white/20
-      border border-white/10
-      flex items-center justify-center
-      transition
-    "
-  >
-    <FaForward className="text-[9px]" />
-  </motion.button>
+              {/* BUTTON GLOW */}
+              <motion.div
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 2,
+                }}
+                className="absolute inset-0 bg-white/10"
+              />
 
-  {/* MUTE */}
-  <motion.button
-    whileTap={{ scale: 0.9 }}
-    whileHover={{ scale: 1.05 }}
-    onClick={toggleMute}
-    className="
-      w-7 h-7
-      rounded-full
-      bg-white/10
-      hover:bg-white/20
-      border border-white/10
-      flex items-center justify-center
-      transition
-    "
-  >
-    {muted ? (
-      <FaVolumeMute className="text-[10px]" />
-    ) : (
-      <FaVolumeUp className="text-[10px]" />
-    )}
-  </motion.button>
+              {musicPaused ? (
+                <FaPlay className="relative text-[8px]" />
+              ) : (
+                <FaPause className="relative text-[8px]" />
+              )}
+            </motion.button>
 
-</div>
+            {/* NEXT */}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.08 }}
+              onClick={nextSong}
+              className="
+                w-5 h-5 sm:w-6 sm:h-6
+                rounded-full
+                bg-white/10
+                border border-white/10
+                hover:bg-white/20
+                flex items-center justify-center
+                transition
+              "
+            >
+              <FaForward className="text-[7px]" />
+            </motion.button>
 
-          {/* MINI VISUALIZER */}
-          <div className="flex items-end gap-[2px] h-6">
-            {[8, 14, 10, 16].map((h, i) => (
+            {/* MUTE */}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.08 }}
+              onClick={toggleMute}
+              className="
+                hidden sm:flex
+                w-6 h-6
+                rounded-full
+                bg-white/10
+                border border-white/10
+                hover:bg-white/20
+                items-center justify-center
+                transition
+              "
+            >
+              {muted ? (
+                <FaVolumeMute className="text-[7px]" />
+              ) : (
+                <FaVolumeUp className="text-[7px]" />
+              )}
+            </motion.button>
+
+          </div>
+
+          {/* VISUALIZER */}
+          <div className="flex items-end gap-[2px] h-4 ml-1">
+
+            {[5, 9, 6, 11].map((h, i) => (
               <motion.span
                 key={i}
                 animate={
@@ -1061,8 +1293,8 @@ useEffect(() => {
                     : {
                         height: [
                           h,
-                          h + 6,
-                          h - 3,
+                          h + 4,
+                          h - 2,
                           h,
                         ],
                       }
@@ -1074,22 +1306,22 @@ useEffect(() => {
                 className="w-[2px] rounded-full bg-white"
               />
             ))}
-          </div>
 
+          </div>
         </div>
       </div>
     </div>
 
-    {/* BOTTOM LINE */}
+    {/* BOTTOM LIGHT */}
     <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
     {/* AUDIO */}
-<audio
-  ref={audioRef}
-  autoPlay
-  muted={muted}
-  src={playlist[currentSong].src}
-/>
+    <audio
+      ref={audioRef}
+      autoPlay
+      muted={muted}
+      src={playlist[currentSong].src}
+    />
   </div>
 </motion.div>
 

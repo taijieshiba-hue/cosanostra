@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaDiscord } from 'react-icons/fa'
+import { FaDiscord, FaCode } from 'react-icons/fa'
 
 export default function Navbar() {
   return (
@@ -16,6 +16,19 @@ export default function Navbar() {
 
       {/* Glow */}
       <div className="absolute inset-0 bg-gradient-to-r from-red-900/10 via-transparent to-red-900/10 pointer-events-none" />
+
+      {/* Animated Shine */}
+      <motion.div
+        animate={{
+          x: ['-120%', '220%'],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 7,
+          ease: 'linear',
+        }}
+        className="absolute top-0 left-0 w-32 h-full bg-white/5 skew-x-12 blur-xl pointer-events-none"
+      />
 
       {/* Content */}
       <div className="relative flex items-center justify-between px-4 sm:px-6 md:px-8 py-4 text-white">
@@ -33,18 +46,32 @@ export default function Navbar() {
             cursor-pointer
             select-none
             whitespace-nowrap
+            relative
           "
         >
           COSANOSTRA
+
+          {/* Small Glow Dot */}
+          <motion.span
+            animate={{
+              opacity: [0.4, 1, 0.4],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+            }}
+            className="absolute -right-3 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_12px_rgba(255,0,0,0.9)]"
+          />
         </motion.h1>
 
         {/* Navigation */}
         <ul
           className="
             flex items-center
-            gap-4 sm:gap-6 md:gap-8
+            gap-3 sm:gap-5 md:gap-7
             uppercase
-            text-[10px] sm:text-xs md:text-sm
+            text-[9px] sm:text-xs md:text-sm
             font-medium
           "
         >
@@ -60,9 +87,47 @@ export default function Navbar() {
                 transition-all duration-300
                 hover:text-white
                 whitespace-nowrap
+                text-gray-300
               "
             >
               Hall Of Fame
+
+              {/* Underline */}
+              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+            </a>
+          </motion.li>
+
+          {/* Developer */}
+          <motion.li whileHover={{ y: -2 }}>
+            <a
+              href="https://discord.gg/GFZZtQUFCR"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                hidden sm:flex
+                items-center gap-2
+                relative group
+                transition-all duration-300
+                hover:text-white
+                whitespace-nowrap
+                text-gray-300
+              "
+            >
+
+              {/* Icon Glow */}
+              <motion.div
+                animate={{
+                  rotate: [0, 10, -10, 0],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 3,
+                }}
+              >
+                <FaCode className="text-[11px] sm:text-sm text-red-400" />
+              </motion.div>
+
+              Want A Custom Website?
 
               {/* Underline */}
               <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
@@ -81,9 +146,21 @@ export default function Navbar() {
                 transition-all duration-300
                 hover:text-white
                 whitespace-nowrap
+                text-gray-300
               "
             >
-              <FaDiscord className="text-sm sm:text-base" />
+              <motion.div
+                animate={{
+                  y: [0, -1.5, 0],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 2,
+                }}
+              >
+                <FaDiscord className="text-sm sm:text-base text-indigo-400" />
+              </motion.div>
+
               Discord
 
               {/* Underline */}
