@@ -60,3 +60,12 @@ body {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

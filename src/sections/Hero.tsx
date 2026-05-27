@@ -517,7 +517,7 @@ useEffect(() => {
   }
 
   return (
-    <section className="relative h-screen overflow-hidden bg-black text-white">
+    <section className="relative min-h-screen overflow-x-hidden bg-black text-white">
 
       {/* BACKGROUND */}
       <motion.img
@@ -545,9 +545,9 @@ useEffect(() => {
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-10">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-3 sm:px-6 py-8 sm:py-10 w-full">
 
-        <motion.h1 className="text-4xl sm:text-5xl md:text-[9rem] font-black uppercase text-center leading-none">
+        <motion.h1 className="text-[2.7rem] sm:text-5xl md:text-[9rem] font-black uppercase text-center leading-none break-words">
           COSANOSTRA
         </motion.h1>
 
@@ -556,7 +556,7 @@ useEffect(() => {
         </motion.p>
 
 {/* MAIN STAFF */}
-<div className="mt-8 sm:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-2 max-w-[820px]">
+<div className="mt-8 sm:mt-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-1 sm:px-2 w-full max-w-[950px]">
 
   {mainStaff.map((item, i) => (
     <motion.div
@@ -578,7 +578,7 @@ useEffect(() => {
         scale: 1.03,
       }}
       onClick={() => setSelected(item)}
-      className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-black/40 backdrop-blur-2xl cursor-pointer"
+      className="group relative overflow-hidden rounded-[22px] sm:rounded-[26px] border border-white/10 bg-black/40 backdrop-blur-2xl cursor-pointer w-full"
     >
 
       {/* BACKGROUND */}
@@ -634,7 +634,7 @@ useEffect(() => {
               scale: 1.06,
             }}
             src={item.avatar}
-            className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-white/20 shadow-[0_0_25px_rgba(255,255,255,0.12)]"
+            className="relative w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-white/20 shadow-[0_0_25px_rgba(255,255,255,0.12)]"
           />
 
           {/* STATUS */}
@@ -693,7 +693,7 @@ useEffect(() => {
         </div>
 
         {/* MINI DESCRIPTION */}
-        <p className="mt-2 text-[10px] sm:text-[11px] text-gray-400 text-center leading-relaxed line-clamp-2">
+        <p className="mt-2 text-[9px] sm:text-[11px] text-gray-400 text-center leading-relaxed line-clamp-2 px-1">
           {item.description}
         </p>
 
@@ -729,14 +729,14 @@ useEffect(() => {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div className="w-full max-w-[850px] overflow-hidden px-2">
+          <div className="w-full max-w-[1000px] overflow-x-auto sm:overflow-hidden px-1 sm:px-2 scrollbar-hide">
             <div ref={trackRef} className="flex gap-4 w-max">
               {[...otherMembers, ...otherMembers].map((item, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setSelected(item)}
-                  className="min-w-[110px] sm:min-w-[140px] p-2 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
+                  className="min-w-[100px] sm:min-w-[140px] p-2 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10 flex-shrink-0"
                 >
                   <img
                     src={item.avatar}
@@ -754,7 +754,7 @@ useEffect(() => {
 
         {/* SECOND LOOPING LINE */}
         <div className="mt-3 w-full overflow-hidden flex justify-center">
-          <div className="w-full max-w-[850px] overflow-hidden px-2">
+          <div className="w-full max-w-[1000px] overflow-x-auto sm:overflow-hidden px-1 sm:px-2 scrollbar-hide">
             <motion.div
               animate={{
                 x: [0, -900],
@@ -771,7 +771,7 @@ useEffect(() => {
                   key={i}
                   whileHover={{ y: -5, scale: 1.05 }}
                   onClick={() => setSelected(item)}
-                  className="min-w-[110px] sm:min-w-[140px] p-2 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10"
+                  className="min-w-[100px] sm:min-w-[140px] p-2 sm:p-3 rounded-2xl bg-white/5 border border-white/10 text-center cursor-pointer hover:bg-white/10 flex-shrink-0"
                 >
                   <img
                     src={item.avatar}
@@ -837,7 +837,7 @@ useEffect(() => {
 >
   <div className="
     relative overflow-hidden
-    w-[220px] sm:w-[250px]
+    w-[170px] sm:w-[250px]
     rounded-2xl
     border border-white/10
     bg-black/35
@@ -870,7 +870,7 @@ useEffect(() => {
       className="absolute top-0 left-0 w-16 h-full bg-white/5 skew-x-12 blur-lg"
     />
 
-    <div className="relative flex items-center gap-3 p-3">
+    <div className="relative flex items-center gap-2 sm:gap-3 p-2 sm:p-3">
 
       {/* COVER */}
       <div className="relative flex-shrink-0">
@@ -1142,7 +1142,7 @@ useEffect(() => {
           damping: 14,
         }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-[92%] max-w-[420px] overflow-hidden rounded-[35px] border border-white/10 bg-[#080808]/90 backdrop-blur-3xl shadow-[0_0_100px_rgba(255,255,255,0.08)]"
+        className="relative w-[94%] sm:w-[92%] max-w-[420px] overflow-hidden rounded-[28px] sm:rounded-[35px] border border-white/10 bg-[#080808]/90 backdrop-blur-3xl shadow-[0_0_100px_rgba(255,255,255,0.08)]"
       >
 
         {/* ANIMATED BORDER */}
@@ -1195,7 +1195,7 @@ useEffect(() => {
         </div>
 
         {/* CONTENT */}
-        <div className="relative px-7 pb-7">
+        <div className="relative px-4 sm:px-7 pb-6 sm:pb-7">
 
           {/* AVATAR */}
           <div className="relative w-fit mx-auto -mt-16">
